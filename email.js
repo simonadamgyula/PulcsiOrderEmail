@@ -26,7 +26,7 @@ function formatHtml(html, person, orders) {
         total += order.price * order.quantity;
     }
 
-    return html.format(person.name, person.email, person.class, person.phone, orderRows, total);
+    return html.format(person.name, person.email, person.class, person.phone, orderRows, total, person.id);
 }
 
 const transporter = nodemailer.createTransport({
