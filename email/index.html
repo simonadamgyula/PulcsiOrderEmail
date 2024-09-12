@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+        <img src="https://jedlikpulcsi.jedlik.eu/images/logo.png" alt="Jedlik pulcsi logo" style="height: 60px;">
+        <h1 style="margin-bottom: 0;">Kedves John Doe!</h1>
+        <h3>Rendelését sikeresen rögzítettük!</h3>
+        <div style="align-self: stretch; margin: 20px 0;">
+            <div>Név: <b>{0}</b></div>
+            <div>Email: <b>{1}</b></div>
+            <div>Osztály: <b>{2}</b></div>
+            <div>Telefonszám: <b>{3}</b></div>
+        </div>
+        <table style="border-collapse: collapse; align-self: stretch;">
+            <tr style="border: 1px solid #010008;">
+                <td colspan="7" style="font-weight: bolder; background-color: #010008; color: white; text-align: left; border: 1px solid #010008; padding: 8px; text-align: center;">Rendelés részletei</td>
+            </tr>
+            <tr style="border: 1px solid #010008;">
+                <td style="border: 1px solid #010008; padding: 8px; text-align: center;">Kép</td>
+                <td style="border: 1px solid #010008; padding: 8px; text-align: center;">Termék</td>
+                <td style="border: 1px solid #010008; padding: 8px; text-align: center;">Méret</td>
+                <td style="border: 1px solid #010008; padding: 8px; text-align: center;">Szín</td>
+                <td style="border: 1px solid #010008; padding: 8px; text-align: center;">Ár</td>
+                <td style="border: 1px solid #010008; padding: 8px; text-align: center;">Mennyiség</td>
+                <td style="border: 1px solid #010008; padding: 8px; text-align: center;">Részösszeg</td>
+            </tr>
+            {4}
+            <tr style="border: none;">
+                <td colspan="5"></td>
+                <td style="border: 1px solid #010008; padding: 8px; text-align: center;">Összesen: </td>
+                <td style="border: 1px solid #010008; padding: 8px; text-align: center;">{5} Ft</td>
+            </tr>
+        </table>
+        <div style="margin-top: 40px;">
+            <a style="padding: 10px 20px; background-color: #008be7; color: white; border: none; border-radius: 5px; cursor: pointer;" href="http://localhost">Rendelés megtekintése</a>
+        </div>
+        <div style="margin-top: 40px;">
+
+        </div>
+    </div>
+</body>
+
+</html>
