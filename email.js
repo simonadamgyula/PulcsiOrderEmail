@@ -40,10 +40,10 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-const sendEmail = (to, person, orders) => {
+const sendEmail = (person, orders) => {
     const mailOptions = {
         from: "jedlikpulcsi@gmail.com",
-        to: to,
+        to: person.email,
         subject: "Rendelés megerősítés",
         html: formatHtml(fs.readFileSync('email/index.html', 'utf8'), person, orders)
     };

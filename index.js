@@ -38,7 +38,7 @@ http.createServer(function (req, res) {
             console.log("Received body: ", body);
 
             const data = JSON.parse(body);
-            sendEmail(data.email, data.person, data.orders);
+            sendEmail(data.person, data.orders);
 
             res.end("ok");
         });
