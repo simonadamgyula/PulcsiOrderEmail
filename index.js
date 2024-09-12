@@ -11,7 +11,7 @@ const person = {
 
 const orders = [
     {
-        productId: "red_gepesz_back",
+        imageId: "red_gepesz_back",
         product: "Gépész Pulcsi",
         size: "M",
         color: "Piros",
@@ -19,7 +19,7 @@ const orders = [
         quantity: 2
     },
     {
-        productId: "blue_info_back",
+        imageId: "blue_info_back",
         product: "Infós Pulcsi",
         size: "S",
         color: "Kék",

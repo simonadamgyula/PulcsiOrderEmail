@@ -22,7 +22,7 @@ function formatHtml(html, person, orders) {
     var orderRows = "";
     var total = 0;
     for (const order of orders) {
-        orderRows += fs.readFileSync('email/orderRow.html', 'utf8').format(order.productId, order.product, order.size, order.color, order.price, order.quantity, order.price * order.quantity)
+        orderRows += fs.readFileSync('email/orderRow.html', 'utf8').format(order.imageId, order.product, order.size, order.color, order.price, order.quantity, order.price * order.quantity)
         total += order.price * order.quantity;
     }
 
