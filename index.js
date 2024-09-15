@@ -28,6 +28,8 @@ const orders = [
     }
 ]
 
+console.log(process.env.PORT);
+
 http.createServer(function (req, res) {
     if (req.method === "POST") {
         let body = "";
