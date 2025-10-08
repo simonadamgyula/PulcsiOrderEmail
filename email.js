@@ -41,6 +41,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendEmail = (person, orders) => {
+    console.log(person);
     const mailOptions = {
         from: `"Jedlik, Pulcsi" <jedlikpulcsi@gmail.com>`,
         to: person.email,
