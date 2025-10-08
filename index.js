@@ -11,9 +11,9 @@ app.post('/', (req, res) => {
     });
     req.on("end", function () {
         const data = JSON.parse(bodyStr);
-        sendEmail(data.person, data.orders);
-
-        res.end("ok");
+        sendEmail(data.person, data.orders)
+        .then(data => res.end(data))
+        .catch(error => res.end(error));
     });
 })
 
