@@ -40,22 +40,26 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-const sendEmail = (person, orders) => {
-    console.log(person);
-    const mailOptions = {
-        from: `"Jedlik, Pulcsi" <jedlikpulcsi@gmail.com>`,
-        to: person.email,
-        replyTo: "jedlikpulcsi@jedlik.eu",
-        subject: "Rendelés megerősítés",
-        html: formatHtml(fs.readFileSync(`${process.cwd()}/email/index.html`, 'utf8'), person, orders)
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.error("Error sending email: ", error);
-        } else {
-            console.log("Email sent: ", info.response);
-        }
+const sendEmail = async (person, orders) => {
+    return new Promise((resolve, reject) => {
+        console.log(person);
+        const mailOptions = {
+            from: `"Jedlik, Pulcsi" <jedlikpulcsi@gmail.com>`,
+            to: person.email,
+            replyTo: "jedlikpulcsi@jedlik.eu",
+            subject: "Rendelés megerősítés",
+            html: formatHtml(fs.readFileSync(`${process.cwd()}/email/index.html`, 'utf8'), person, orders)
+        };
+    
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.error("Error sending email: ", error);
+                reject("Error sending email: ", error);
+            } else {
+                console.log("Email sent: ", info.response);
+                resolve("Email sent: ", info.response);
+            }
+        });
     });
 }
 
