@@ -1,7 +1,7 @@
 const express = require('express');
 const sendEmail = require('./email.js');
 const app = express();
-const port = 3000;
+const port = process.env.SERVER_PORT || 3000;
 
 
 app.post('/', (req, res) => {
