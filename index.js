@@ -1,21 +1,22 @@
-var http = require('http');
+const express = require('express');
 const sendEmail = require('./email.js');
+const app = express();
+const port = 3000;
 
-console.log(process.env.PORT);
 
-http.createServer(function (req, res) {
-    if (req.method === "POST") {
-        let body = "";
-        req.on("data", (chunk) => {
-            body += chunk.toString();
-        });
-        req.on("end", () => {
-            console.log("Received body: ", body);
+app.post('/', (req, res) => {
+    var bodyStr = '';
+    req.on("data", function (chunk) {
+        bodyStr += chunk.toString();
+    });
+    req.on("end", function () {
+        const data = JSON.parse(bodyStr);
+        sendEmail(data.person, data.orders);
 
-            const data = JSON.parse(body);
-            sendEmail(data.person, data.orders);
+        res.end("ok");
+    });
+})
 
-            res.end("ok");
-        });
-    }
-}).listen(process.env.PORT);
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+})

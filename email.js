@@ -32,18 +32,19 @@ function formatHtml(html, person, orders) {
 const transporter = nodemailer.createTransport({
     service: "Gmail",
     host: "smtp.gmail.com",
-    port: 465,
+    port: 468,
     secure: true,
     auth: {
-        user: process.env.EMAIL,
-        pass: process.env.APP_PASSWORD,
+        user: "jedlikpulcsi@gmail.com",
+        pass: "zyyt jbqa uuyi ksxk",
     },
 });
 
 const sendEmail = (person, orders) => {
     const mailOptions = {
-        from: "jedlikpulcsi@gmail.com",
+        from: `"Jedlik, Pulcsi" <jedlikpulcsi@gmail.com>`,
         to: person.email,
+        replyTo: "jedlikpulcsi@jedlik.eu",
         subject: "Rendelés megerősítés",
         html: formatHtml(fs.readFileSync('email/index.html', 'utf8'), person, orders)
     };
