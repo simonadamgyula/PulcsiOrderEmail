@@ -12,9 +12,17 @@ app.post('/', (req, res) => {
     });
     req.on("end", function () {
         const data = JSON.parse(bodyStr);
+
+        const authToken = req.headers.authentication;
+        if (authToken !== process.env.AUTH_TOKEN) {
+            res.statusCode = 401;
+            res.end();
+            return;
+        }
+
         sendEmail(data.person, data.orders)
-        .then(data => res.end(data))
-        .catch(error => res.end(error));
+            .then(data => res.end(data))
+            .catch(error => res.end(error));
     });
 })
 

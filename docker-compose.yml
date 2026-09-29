@@ -1,0 +1,9 @@
+services:
+  pulcsi-email-service:
+    build: .
+    container_name: pulcsi_email_app
+    restart: unless-stopped
+    env_file:
+      - .env
+    ports:
+      - "3000:3000"
