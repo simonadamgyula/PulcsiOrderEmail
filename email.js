@@ -22,7 +22,7 @@ function formatHtml(html, person, orders) {
     var orderRows = "";
     var total = 0;
     for (const order of orders) {
-        orderRows += fs.readFileSync(`./email/orderRow.html`, 'utf8').format(order.imageId, order.product, order.size, order.color, order.price, order.quantity, order.price * order.quantity)
+        orderRows += fs.readFileSync(`./email/orderRow.html`, 'utf8').format(order.imageId, order.product, order.type, order.size, order.color, order.price, order.quantity, order.price * order.quantity)
         total += order.price * order.quantity;
     }
 
@@ -36,36 +36,36 @@ const transporter = nodemailer.createTransport({
     port: 468,
     secure: true,
     auth: {
-        user: "jedlikpulcsi@gmail.com",
-        pass: "zyyt jbqa uuyi ksxk",
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD,
     },
 });
-	
+
 
 const sendEmail = async (person, orders) => {
     return new Promise((resolve, reject) => {
-        console.log(person);
-		try {
-        const mailOptions = {
-            from: `"Jedlik, Pulcsi" <jedlikpulcsi@gmail.com>`,
-            to: person.email,
-            replyTo: "jedlikpulcsi@jedlik.eu",
-            subject: "Rendelés megerősítés",
-            html: formatHtml(fs.readFileSync(`${process.cwd()}/email/index.html`, 'utf8'), person, orders)
-        };
+        console.log(person, "person");
 
-        transporter.sendMail(mailOptions, (error, info) => {
-            if (error) {
-                console.error("Error sending email: ", error);
-                reject("Error sending email: ", error);
-            } else {
-                console.log("Email sent: ", info.response);
-                resolve("Email sent: ", info.response);
-            }
-        });
-		} catch (e) {
-	console.log(e);
-}
+        try {
+            const mailOptions = {
+                from: process.env.SENDER,
+                to: person.email,
+                subject: "Rendelés megerősítés",
+                html: formatHtml(fs.readFileSync(`${process.cwd()}/email/index.html`, 'utf8'), person, orders)
+            };
+
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error("Error sending email: ", error);
+                    reject("Error sending email: ", error);
+                } else {
+                    console.log("Email sent: ", info.response);
+                    resolve("Email sent: ", info.response);
+                }
+            });
+        } catch (e) {
+            console.log(e);
+        }
     });
 }
 

@@ -13,7 +13,11 @@ app.post('/', (req, res) => {
     req.on("end", function () {
         const data = JSON.parse(bodyStr);
 
+        console.log(data);
+
         const authToken = req.headers.authentication;
+        console.log(req.headers, authToken, process.env.AUTH_TOKEN);
+
         if (authToken !== process.env.AUTH_TOKEN) {
             res.statusCode = 401;
             res.end();
@@ -22,7 +26,10 @@ app.post('/', (req, res) => {
 
         sendEmail(data.person, data.orders)
             .then(data => res.end(data))
-            .catch(error => res.end(error));
+            .catch(error => {
+                console.log(error);
+                res.end(error);
+            });
     });
 })
 
